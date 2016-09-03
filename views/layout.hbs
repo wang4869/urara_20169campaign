@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一触。爱，不释手。</title>
+    <script>
+        var phoneWidth =  parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <script src="/js/jquery-1.8.0.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="/css/css.css" />
+</head>
+<body>
+{{{body}}}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://newwx.ompchina.net/public/javascripts/weixinjssdk.js"></script>
+<script>
+    DATAForWeixin.debug = false; // 可设置为 true 以调试
+
+    DATAForWeixin.appId = 'wx1f984cba30eb34b7',//账号的appid
+            DATAForWeixin.openid = '',
+            DATAForWeixin.sharecampaign = '悠莱9月campaign',//campaign名称
+
+            /* 请修改以下文字和图片，定制分享文案 */
+            DATAForWeixin.setTimeLine({
+                title: '马思纯都爱上了，你还等什么？',
+                imgUrl: 'http://urara.ompchina.net/images/shareImg.jpg',
+                link: 'http://huanfulu9campaign.ompchina.net/',
+                callback: ''
+            });
+    DATAForWeixin.setAppMessage({
+        title: '马思纯都爱上了，你还等什么？',
+        imgUrl: 'http://urara.ompchina.net/images/shareImg.jpg',
+        desc: '和马思纯一起体验看得见，触得到的净透柔润光采肌肤！',
+        link: 'http://huanfulu9campaign.ompchina.net/',
+        callback: ''
+    });
+</script>
+
+</body>
+</html>
