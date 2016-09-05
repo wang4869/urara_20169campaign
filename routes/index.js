@@ -111,7 +111,16 @@ router.get('/admin_info', function (req, res, next) {
         return;
     }
     else{
-        res.render('admin_info', {admin:req.session.admin.admin});
+      modelsInfo.getAllInfo(function(err,info){
+          if(info){
+              res.render('admin_info', {admin:'数据表',tInfo:info});
+              return false;
+          }
+          else{
+            res.render('admin_info', {admin:'没有查询到数据'});
+            return false;
+          }
+      });
     }
 });
 
