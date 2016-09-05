@@ -3,6 +3,7 @@ var router = express.Router();
 var modelsInfo = require('../models/info');
 var urlencode = require('urlencode');
 var urllib = require('urllib');
+var excel = require('node-excel-export');
 
 function getClientIp(req) {
     return req.headers['x-forwarded-for'] ||
@@ -120,6 +121,23 @@ router.get('/admin_info', function (req, res, next) {
             res.render('admin_info', {admin:'没有查询到数据'});
             return false;
           }
+      });
+    }
+});
+
+/*导出info数据*/
+router.get('/outexcel', function (req, res, next) {
+    if (!req.session || !req.session.admin) {
+        res.redirect('/admin');
+        return;
+    }
+    else{
+      modelsInfo.getAllInfo(function(err,info){
+        var oInfo=info;
+        console.log(oInfo);
+
+
+        res.render('admin_info', {admin:'数据表',tInfo:info,ol:oInfo.length});
       });
     }
 });

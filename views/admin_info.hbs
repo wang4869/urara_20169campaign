@@ -4,7 +4,7 @@ th,td{ padding:10px;}
 </style>
 
 <h1>{{admin}}</h1>
-<a href="javascript:void(0)" style="position:fixed; top:10px; right:10px; color:#000; font-size:30px;" onclick="outexcel();">导出</a>
+<a href="/outexcel" style="position:fixed; top:10px; right:10px; color:#000; font-size:30px;">导出</a>
 <table cellspacing="10" cellpadding="10" border="1">
   <tr>
     <th>手机号</th>
@@ -26,9 +26,4 @@ th,td{ padding:10px;}
   {{/each}}
 </table>
 
-<script>
-var tInfo=[{{tInfo}}];
-function outexcel{
-alert(tInfo.length);
-}
-</script>
+<p>{{ol}}</p>
