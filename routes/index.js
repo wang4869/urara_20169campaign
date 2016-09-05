@@ -70,7 +70,7 @@ router.post('/saveInfo', function (req, res, next) {
     modelsInfo.getInfoByTel(tel,function(err,info){
         if(info){
             console.log('11111');
-            res.send('tryPage', {error: 'error',msg:'该手机号码已申请试用'});
+            res.send({error: 'error',msg:'该手机号码已申请试用'});
             return false;
         }
         else{
@@ -81,7 +81,7 @@ router.post('/saveInfo', function (req, res, next) {
                     store: store,
                     ip: getClientIp(req)
                 }, function () {
-                    res.send('tryPage', {error: 'succeed'});
+                    res.send({error: 'succeed'});
                 }
             );
         }

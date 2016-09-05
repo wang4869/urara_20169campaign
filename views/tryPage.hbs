@@ -1166,7 +1166,6 @@
     var canSubmit = 1;//1:可以提交 2:锁定提交 3:提交成功
     function submitInfo() {
         if (canSubmit == 1) {
-            canSubmit = 2;
             var tel = $.trim($('#tel').val());
             var province = $.trim($('#prov').val());
             var city = $.trim($('#city').val());
@@ -1189,7 +1188,7 @@
                 alert('请选择最近柜台');
                 return false;
             }
-
+            canSubmit = 2;
             $.ajax('/saveInfo', {
                 data: {
                     tel: tel,
@@ -1221,7 +1220,7 @@
             });
         }
         else if (canSubmit==3) {
-            alert('您已经申请成功');
+            //alert('您已经申请成功');
             sucpop();
         }
     }
