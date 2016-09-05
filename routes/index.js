@@ -43,6 +43,7 @@ router.get('/', function (req, res, next) {
     });
 });
 
+/*保存用户信息接口*/
 router.post('/saveInfo', function (req, res, next) {
     var _Info = req.body;
     var tel=_Info.tel;
@@ -86,6 +87,32 @@ router.post('/saveInfo', function (req, res, next) {
             );
         }
     });
+});
+
+/*后台登入*/
+router.post('/admin', function (req, res, next) {
+    var adminUsername=req.body.adminUsername;
+    var adminPassword=req.body.adminPassword;
+    if(adminUsername=="admin"&&adminPassword=="123"){
+        req.session.admin = {'admin':'admin'};//session保存到本地
+        res.redirect('/admin_info');
+        return;
+    }
+    else{
+        res.redirect('/');
+        return;
+    }
+});
+
+/*info数据*/
+router.get('/admin_info', function (req, res, next) {
+    if (!req.session || !req.session.admin) {
+        res.redirect('/admin');
+        return;
+    }
+    else{
+        res.render('admin_info', {admin:req.session.admin.admin});
+    }
 });
 
 module.exports = router;

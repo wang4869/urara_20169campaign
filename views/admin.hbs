@@ -1,0 +1,18 @@
+<form method="post" action="/admin" id="adminForm">
+    <div style="padding:10px;"><div style="width: 100px; text-align: right; padding-right: 10px; display: inline-block;">adminUsername:</div><input name="adminUsername" id="adminUsername" type="text"></div>
+    <div style="padding:10px;"><div style="width: 100px; text-align: right; padding-right: 10px; display: inline-block;">adminPassword:</div><input name="adminPassword" id="adminPassword" type="text"></div>
+    <div style="padding:10px;"><div style="width: 100px; text-align: right; padding-right: 10px; display: inline-block;"></div><a href="JavaScript:void(0)" onclick="submitAdmin();">登入</a></div>
+</form>
+
+<script>
+    function submitAdmin() {
+        var adminUsername = $.trim($('#adminUsername').val());
+        var adminPassword = $.trim($('#adminPassword').val());
+        if (adminUsername != '' && adminPassword != '') {
+            $('#adminForm').submit();
+        }
+        else{
+            alert('请输入用户名密码');
+        }
+    }
+</script>
