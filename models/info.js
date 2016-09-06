@@ -17,8 +17,17 @@ var pv = new Schema({
     pvNumb: {type: Number}
 });
 
+var smsLog = new Schema({
+    tel: {type: String},
+    smsTxt: {type: String},
+    error: {type: String},
+    msg: {type: String},
+    create_at: {type: Date, default: Date.now}
+});
+
 var iInfo = mongoose.model('info', info);
 var iPv = mongoose.model('pv', pv);
+var iSmsLog = mongoose.model('smsLog', smsLog);
 
 exports.getInfoByTel = function (tel, callback) {
     iInfo.findOne({'tel': tel}, callback);
@@ -60,4 +69,11 @@ exports.updatePv = function (callback) {
         },
         callback
     );
+};
+
+//短信log
+exports.saveSms = function (logs) {
+    var iLogs=logs;
+    var sms = new iSmsLog(iLogs);
+    sms.save();
 };

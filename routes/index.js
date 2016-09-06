@@ -3,6 +3,7 @@ var router = express.Router();
 var modelsInfo = require('../models/info');
 var urlencode = require('urlencode');
 var urllib = require('urllib');
+var parseString = require('xml2js').parseString;
 
 function getClientIp(req) {
     return req.headers['x-forwarded-for'] ||
@@ -70,7 +71,6 @@ router.post('/saveInfo', function (req, res, next) {
     }
     modelsInfo.getInfoByTel(tel, function (err, info) {
         if (info) {
-            console.log('11111');
             res.send({error: 'error', msg: '该手机号码已申请试用'});
             return false;
         }
@@ -82,18 +82,36 @@ router.post('/saveInfo', function (req, res, next) {
                     store: store,
                     ip: getClientIp(req)
                 }, function () {
-                    urllib.request('http://sdk999ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey=9SDK-EMY-0999-JESQN&password=403962&phone=' + tel + '&message=' + urlencode('【悠莱】2016年10月9日前凭短信至XXXXXXXXXX门店可享受免费美容咨询服务，领取【净透幻肤露&臻弹柔采水乳】试用装，领完即止。（转发无效）') + '&addserial=2632', {
-                        method: 'GET',
-                        dataType: 'json',
-                        contentType: 'json'
+                    var smsTxt = '【悠莱】2016年10月9日前凭短信至XXXXXXXXXX门店可享受免费美容咨询服务，领取【净透幻肤露&臻弹柔采水乳】试用装，领完即止。（转发无效）';
+                    urllib.request('http://sdk999ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey=9SDK-EMY-0999-JESQN&password=403962&phone=' + tel + '&message=' + urlencode(smsTxt) + '&addserial=2632', {
+                        method: 'GET'
                     }, function (err, data) {
-                        console.log(data);
-                        if(data==0){
-                            res.send({error: 'succeed'});
-                        }
-                        else{
-                            res.send({error: '短信发送失败'});
-                        }
+                        var xml = data;
+                        parseString(xml, function (err, result) {
+                            console.log(result);
+                            if (result.response.error == 0) {
+                                res.send({error: result.response.error, msg: result.response.message});
+                                //sms log
+                                var logs = {
+                                    tel: tel,
+                                    smsTxt: smsTxt,
+                                    error: result.response.error,
+                                    msg: result.response.message
+                                };
+                                modelsInfo.saveSms(logs);
+                            }
+                            else {
+                                res.send({error: result.response.error, msg: result.response.message});
+                                //sms log
+                                var logs = {
+                                    tel: tel,
+                                    smsTxt: smsTxt,
+                                    error: result.response.error,
+                                    msg: result.response.message
+                                };
+                                modelsInfo.saveSms(logs);
+                            }
+                        });
                     });
                 }
             );

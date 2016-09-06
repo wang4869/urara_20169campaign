@@ -1203,7 +1203,7 @@
                         alert(json.msg);
                         canSubmit = 1;
                     }
-                    else if(json.error=='短信发送失败'){
+                    else if(json.error!='0'){
                         canSubmit = 3;
                         $('#tel').attr('disabled', 'disabled');
                         $('#prov').attr('disabled', 'disabled');
