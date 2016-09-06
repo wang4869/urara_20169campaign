@@ -12,9 +12,9 @@
     "express": "~4.13.4",
     "express-session": "^1.14.1",
     "hbs": "~4.0.0",
+    "json2xls": "^0.1.2",
     "mongoose": "^4.5.10",
     "morgan": "~1.7.0",
-    "node-excel-export": "^1.2.0",
     "serve-favicon": "~2.3.0",
     "urlencode": "^1.1.0",
     "urllib": "^2.13.0"

@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var json2xls = require('json2xls');
+
 var routes = require('./routes/index');
 var tryPage = require('./routes/tryPage');
 var admin = require('./routes/admin');
@@ -38,6 +40,8 @@ app.use(session({
   secret: 'omp'
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(json2xls.middleware);
 
 app.use('/', routes);
 app.use('/tryPage', tryPage);

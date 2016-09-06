@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://huanfulu:huanfulu12345678@112.124.125.28:27017/huanfulu');
-//mongoose.connect('mongodb://127.0.0.1/urara');
+//mongoose.connect('mongodb://huanfulu:huanfulu12345678@112.124.125.28:27017/huanfulu');
+mongoose.connect('mongodb://127.0.0.1/urara');
 var Schema = mongoose.Schema;
 
 var info = new Schema({

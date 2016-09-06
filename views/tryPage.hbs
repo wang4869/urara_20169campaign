@@ -1203,6 +1203,15 @@
                         alert(json.msg);
                         canSubmit = 1;
                     }
+                    else if(json.error=='短信发送失败'){
+                        canSubmit = 3;
+                        $('#tel').attr('disabled', 'disabled');
+                        $('#prov').attr('disabled', 'disabled');
+                        $('#city').attr('disabled', 'disabled');
+                        $('#chant').attr('disabled', 'disabled');
+                        sucpop();
+                        console.log('短信发送失败');
+                    }
                     else {
                         canSubmit = 3;
                         $('#tel').attr('disabled', 'disabled');
@@ -1210,7 +1219,6 @@
                         $('#city').attr('disabled', 'disabled');
                         $('#chant').attr('disabled', 'disabled');
                         sucpop();
-                        //请求短信接口
                     }
                 },
                 error: function (json) {
