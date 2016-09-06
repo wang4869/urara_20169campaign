@@ -1145,6 +1145,9 @@
                 $('#city').append("<option value='" + sJson[i].c + "'>" + sJson[i].c + "</option>");
             }
         }
+        if($.trim($('#prov').val())==''){
+          $('.prodiv p').html('省份');
+        }
     }
 
     function changeC() {
@@ -1157,10 +1160,16 @@
                 $('#chant').append("<option value='" + sJson[i].s + "'>" + sJson[i].s + "</option>");
             }
         }
+        if($.trim($('#city').val())==''){
+          $('.citydiv p').html('城市');
+        }
     }
 
     function changeS() {
         $('.chantdiv p').html($.trim($('#chant').val()));
+        if($.trim($('#chant').val())==''){
+          $('.chantdiv p').html('选择最近柜台');
+        }
     }
 
     var canSubmit = 1;//1:可以提交 2:锁定提交 3:提交成功

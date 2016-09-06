@@ -82,7 +82,7 @@ router.post('/saveInfo', function (req, res, next) {
                     store: store,
                     ip: getClientIp(req)
                 }, function () {
-                    var smsTxt = '【悠莱】2016年10月9日前凭短信至XXXXXXXXXX门店可享受免费美容咨询服务，领取【净透幻肤露&臻弹柔采水乳】试用装，领完即止。（转发无效）';
+                    var smsTxt = '【悠莱】2016年10月9日前凭短信至'+store+'门店可享受免费美容咨询服务，领取【净透幻肤露&臻弹柔采水乳】试用装，领完即止。（转发无效）';
                     urllib.request('http://sdk999ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey=9SDK-EMY-0999-JESQN&password=403962&phone=' + tel + '&message=' + urlencode(smsTxt) + '&addserial=2632', {
                         method: 'GET'
                     }, function (err, data) {
