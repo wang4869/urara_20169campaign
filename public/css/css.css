@@ -35,8 +35,10 @@ user-select: none;
 outline: none;}
 
 
-#indexbox{ background:url(../images/intro1.jpg) no-repeat 0 0; width:640px; height:1039px; position:absolute;}
-.person{ background:url(../images/person.png) no-repeat 0 0; width:281px; height:31px; position:absolute; padding-left:46px; color:#a87926; font-size:28px; line-height:31px; letter-spacing:7.2px;left:156px; } 
+#indexbox{ background:url(../images/intro1.jpg) no-repeat 0 0; width:640px; height:1039px; position:absolute; z-index:1;}
+.person{ background:url(../images/person.png) no-repeat 0 0; width:281px; height:31px; position:absolute; padding-left:46px; color:#a87926; font-size:28px;left:156px; overflow:hidden;  line-height:31px; letter-spacing:7.2px;} 
+.person ul{ position:relative; width:281px; height:62px;}
+.person ul li{width:281px; height:31px; line-height:31px; letter-spacing:7.2px;}
 
 .note1{ position:absolute; width:282px; height:86px; background-image:url(../images/p01.png); left:175px; top:97px; -webkit-animation:3s note1 steps(20) infinite;}
 @-webkit-keyframes note1 {
@@ -60,8 +62,8 @@ outline: none;}
 .btn1 span{ display:block; width:83px; height:38px; background:url(../images/btn1light.png) no-repeat 0 0; margin-left:33px;  opacity:0.2;}
 .btn2 span{ display:block; width:52px; height:94px; background:url(../images/pz.png) no-repeat 0 0; margin-left:21px;}
 
-#ios{ position:relative; width:640px; height:1039px; overflow:hidden;}
-#v1Box,.video-box{  width:640px; height:1039px; }
+#ios{ position:absolute; left:0; top:0; width:640px; height:1039px; z-index:0; display:none; }
+#v1Box,.video-box{  width:640px; height:1039px;  position:relative;}
 
 .ios_btn1,.ios_btn2,.andrio_btn1,.andrio_btn2{ position:absolute; width:59px; height:59px; background-color:#f6a96a; border-radius:29px; bottom:40px;}
 .ios_btn1,.andrio_btn1{ right:115px;}

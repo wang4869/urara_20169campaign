@@ -75,6 +75,9 @@ if (browser.versions.ios){
 			 
 					$("#loadingbox").hide();  
 					$("#indexbox").show();
+					
+					 $("#idxperson ul").animate({top:-31},1000);
+  
 				  
 	      });
 	
@@ -120,6 +123,8 @@ function showsp(){
 		var v1 = document.getElementById('videoIndex1');
 		$("#ios").show();
 		v1.play();
+		$(".ios_btn2").trigger('click');
+		
 		v1.addEventListener("ended",function(evt) {
 			location.href="/tryPage";
 		});
@@ -143,17 +148,16 @@ function showsp(){
 } 
  
  
+ 
   
   
   
-  
-  
-$("#ios .ios_btn1").click(function(){
+$("#ios .ios_btn1").bind('click',function(){
 		addGift();
 		ga('send','event','button','click','ios_gift')
 })  
 
-$('#ios .ios_btn2').click(function(){
+$('#ios .ios_btn2').bind('click',function(){
 	createHeart(0,'#ios')
 	setTimeout(function(){
 		createHeart(1,'#ios')

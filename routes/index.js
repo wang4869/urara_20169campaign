@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var modelsInfo = require('../models/info');
 var urlencode = require('urlencode');
@@ -15,28 +15,7 @@ function getClientIp(req) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
     modelsInfo.getPv(function (err, pv) {
-        var pvNumb = pv.pvNumb.toString();
-        if (pvNumb.length < 2) {
-            pvNumb = '00000' + pvNumb;
-        }
-        else if (pvNumb.length < 3) {
-            pvNumb = '0000' + pvNumb;
-        }
-        else if (pvNumb.length < 4) {
-            pvNumb = '000' + pvNumb;
-        }
-        else if (pvNumb.length < 5) {
-            pvNumb = '00' + pvNumb;
-        }
-        else if (pvNumb.length < 6) {
-            pvNumb = '0' + pvNumb;
-        }
-        else if (pvNumb.length < 7) {
-            pvNumb = pvNumb;
-        }
-        else {
-            pvNumb = '99999';
-        }
+        var pvNumb = pv.pvNumb;
         res.render('index', {pvNumb: pvNumb});
     });
     modelsInfo.updatePv(function () {
@@ -66,7 +45,7 @@ router.post('/saveInfo', function (req, res, next) {
         return false;
     }
     else if (store == '') {
-        res.send('tryPage', {error: '请选择最近柜台'});
+        res.send('tryPage', {error: '请选择柜台'});
         return false;
     }
     modelsInfo.getInfoByTel(tel, function (err, info) {

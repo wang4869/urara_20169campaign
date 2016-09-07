@@ -21,7 +21,7 @@
         </div>
 
         <div class="chantdiv" style="top:554px;">
-            <p>选择最近柜台</p>
+            <p>选择柜台</p>
             <select id="chant" onchange="changeS();">
             </select>
         </div>
@@ -32,6 +32,8 @@
         <a href="javascript:void(0)" onclick="showRule();ga('send','event','button','click','rule')"
            class="btnrule"></a>
     </div>
+
+	<p id="parr" style=" background:url(images/parr.png) no-repeat 0 0; width:55px; height:60px; left:292px; position:fixed; bottom:50px;"></p>
 
     <div class="bggold none"></div>
 
@@ -48,7 +50,7 @@
     </div>
 
     <div id="sharepop" class="none" onclick="hideShare()">
-        <img src="images/sharenote.png" style="position:absolute; right:23px; top:30px;"/>
+        <img src="images/sharenote.png" style="position:fixed; right:23px; top:30px;"/>
         <img src="images/sharelight.png"
              style="position:absolute; left:148px; top:232px; -webkit-animation:opacity 1s infinite linear alternate;"/>
         <img src="images/sharepz.png" style="position:absolute; left:148px; top:232px;"/>
@@ -59,6 +61,15 @@
 </div>
 
 <script>
+$(window).scroll(function(){
+	var st=$(window).scrollTop();
+	var hh=$(window).height();
+	if(1704-st<hh+100){
+		$("#parr").hide();
+	}
+})
+
+
     var hh = $(document).height();
     $(".bgblack,.bggold").height(hh);
     function showRule() {
@@ -1138,7 +1149,7 @@
         $('#city').append("<option value=''></option>");
         $('.citydiv p').html('城市');
         $('#chant').html('');
-        $('.chantdiv p').html('选择最近柜台');
+        $('.chantdiv p').html('选择柜台');
         for (var i = 0; i < sLeng - 1; i++) {
             if (sJson[i].p == $.trim($('#prov').val()) && sJson[i].c != cTemp) {
                 cTemp = sJson[i].c;
@@ -1154,7 +1165,7 @@
         $('.citydiv p').html($.trim($('#city').val()));
         $('#chant').html('');
         $('#chant').append("<option value=''></option>");
-        $('.chantdiv p').html('选择最近柜台');
+        $('.chantdiv p').html('选择柜台');
         for (var i = 0; i < sLeng - 1; i++) {
             if (sJson[i].p == $.trim($('#prov').val()) && sJson[i].c == $.trim($('#city').val())) {
                 $('#chant').append("<option value='" + sJson[i].s + "'>" + sJson[i].s + "</option>");
@@ -1168,7 +1179,7 @@
     function changeS() {
         $('.chantdiv p').html($.trim($('#chant').val()));
         if($.trim($('#chant').val())==''){
-          $('.chantdiv p').html('选择最近柜台');
+          $('.chantdiv p').html('选择柜台');
         }
     }
 
@@ -1194,7 +1205,7 @@
                 return false;
             }
             else if (store == '') {
-                alert('请选择最近柜台');
+                alert('请选择柜台');
                 return false;
             }
             canSubmit = 2;

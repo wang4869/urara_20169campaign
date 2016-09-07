@@ -12,15 +12,23 @@
     <p class="note1"></p>
     <a href="javascript:void(0)" onclick="showsp();ga('send','event','button','click','weiguan')" class="btn1"><span style="-webkit-animation:opacity 1s infinite linear alternate;"></span></a>
     <a href="/tryPage" onclick="ga('send','event','button','click','try')" class="btn2"><span style="-webkit-animation: pz 2s infinite;"></span></a>
-    <p class="person" style="top:978px;">{{pvNumb}}</p>
-</div>
-
-<div id="ios" class="none">
-    <div class="img-box" id="v1Box">
-        <video class="video-box" id="videoIndex1"   x-webkit-airplay="true" webkit-playsinline="true" preload="auto"  poster="images/ios.jpg"></video>
+    <div class="person" style="top:978px;" id="idxperson">
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
 
-    <p class="person" style="top:29px;">{{pvNumb}}</p>
+
+
+</div>
+
+<div id="ios">
+    <div class="img-box" id="v1Box">
+        <video class="video-box" id="videoIndex1" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" width="640" height="1039" poster="images/ios.jpg"></video>
+    </div>
+
+    <div class="person norperson" style="top:29px;"></div>
 
     <div class="mp"></div>
 
@@ -34,29 +42,56 @@
 <div id="andrio" class="none">
     <div class="img-box" id="v2Box">
         <div class="poster"></div>
-        <video class="video-box2" id="videoIndex2"  x-webkit-airplay="true" webkit-playsinline="true" preload="auto" poster="images/andrio.jpg"></video>
+        <video class="video-box2" id="videoIndex2" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" poster="images/andrio.jpg"></video>
     </div>
 
     <div class="andriofunc">
-        <p class="person" style="top:37px; left:316px;">{{pvNumb}}</p>
+        <p class="person norperson" style="top:37px; left:316px;"></p>
         <div class="mp" style="top:5px; left:-20px; background:url(images/mp2.png) no-repeat 0 0;"></div>
         <a href="/tryPage" onclick="ga('send','event','button','click','andrio_try')" class="btn2" style="top:100px; left:220px;"><span style="-webkit-animation: pz 2s infinite;"></span></a>
         <div class="andrio_btn1" onclick="sf(this);addGift();ga('send','event','button','click','andrio_gift')"><img src="/images/gift1.png" /></div>
-        <div class="andrio_btn2" onclick="sf(this);ga('send','event','button','click','andrio_xin')"><img src="/images/gift2.png"  /></div>
+        <div class="andrio_btn2" onclick="sf(this);ga('send','event','button','click','andrio_xin')"><img src="/images/gift2.png" /></div>
     </div>
 
 </div>
 
 
+<script>
+    $(document).ready(function() {
+        var pvnum = '{{pvNumb}}';
+        var pvnum0 = (parseInt(pvnum) - 1).toString();
+
+        var pvlen = pvnum.length;
+        var pv0len = pvnum0.length;
+
+        for (var i = pvlen; i < 6; i++) {
+            pvnum = '0' + pvnum;
+        }
+        for (var i = pv0len; i < 6; i++) {
+            pvnum0 = '0' + pvnum0;
+        }
+
+        $("#idxperson li").eq(0).text(pvnum0);
+        $("#idxperson li").eq(1).text(pvnum);
+
+        $(".norperson").text(pvnum);
+    });
+</script>
 
 <script src="/js/common.js"></script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-83299046-1', 'auto');
     ga('send', 'pageview');
-
 </script>
